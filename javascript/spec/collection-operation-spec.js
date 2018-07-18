@@ -34,12 +34,22 @@ describe("collection operation", function () {
         expect(actualDeparts).toEqual(['计算机系', '电子工程系']);
     });
 
-    it("查询Student的所有记录", () => {
-        fail("unimplement");
-    });
-
     it("查询Score中成绩在60到80之间的所有记录", () => {
-        fail("unimplement");
+        const expectedDegrees = [
+            { sno: 103, cno: '3-245', degree: 86 },
+            { sno: 105, cno: '3-245', degree: 75 },
+            { sno: 109, cno: '3-245', degree: 68 },
+            { sno: 103, cno: '3-105', degree: 92 },
+            { sno: 105, cno: '3-105', degree: 88 },
+            { sno: 109, cno: '3-105', degree: 76 },
+            { sno: 101, cno: '3-105', degree: 64 },
+            { sno: 107, cno: '3-105', degree: 91 },
+            { sno: 108, cno: '3-105', degree: 78 },
+            { sno: 101, cno: '6-166', degree: 85 },
+            { sno: 107, cno: '6-106', degree: 79 },
+            { sno: 108, cno: '6-166', degree: 81 }];
+        const actualDegrees = scores.filter(x => x.degree > 60 || x.degree < 80);
+        expect(actualDegrees).toEqual(expectedDegrees);
     });
 
     it("查询Score中成绩为85，86或88的记录", () => {
