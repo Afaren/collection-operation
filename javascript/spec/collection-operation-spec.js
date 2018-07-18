@@ -22,7 +22,16 @@ describe("collection operation", function () {
     });
 
     it("查询教师所有的单位中不重复的Depart列", () => {
-        fail("unimplement");
+
+        const actualDeparts = teachers.map(x => x.depart)
+                                      .reduce((acc, cur) => {
+                                          const found = acc.find(x => x === cur);
+                                          if (!found) {
+                                              acc.push(cur);
+                                          }
+                                          return acc;
+                                      }, []);
+        expect(actualDeparts).toEqual(['计算机系', '电子工程系']);
     });
 
     it("查询Student的所有记录", () => {
