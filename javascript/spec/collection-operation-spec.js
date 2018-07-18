@@ -163,7 +163,12 @@ describe("collection operation", function () {
     });
 
     it("查询Score中的最高分的学生学号和课程号", () => {
-        fail("unimplement");
+        const expected = { sno: 103, cno: '3-105' };
+
+        const max = scores.reduce((max, cur) => cur.degree > max.degree ? cur : max);
+        const actual = { sno: max.sno, cno: max.cno };
+
+        expect(actual).toEqual(expected);
     });
 
     it("查询‘3-105’号课程的平均分", () => {
