@@ -53,7 +53,14 @@ describe("collection operation", function () {
     });
 
     it("查询Score中成绩为85，86或88的记录", () => {
-        fail("unimplement");
+        const expectedDegrees = [
+            { sno: 103, cno: '3-245', degree: 86 },
+            { sno: 105, cno: '3-105', degree: 88 },
+            { sno: 101, cno: '6-166', degree: 85 }];
+
+        const actualDegrees = scores.filter(x => x.degree === 85 || x.degree === 86 || x.degree === 88);
+        
+        expect(actualDegrees).toEqual(expectedDegrees);
     });
 
     it("查询Student中“95031”班或性别为“女”的同学记录", () => {
