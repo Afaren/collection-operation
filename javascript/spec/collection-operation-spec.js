@@ -155,7 +155,11 @@ describe("collection operation", function () {
     });
 
     it("查询“95031”班的学生人数", () => {
-        fail("unimplement");
+        const expected = 3;
+        const actual = students.filter(x => x.class === 95031)
+                               .length;
+
+        expect(actual).toEqual(expected);
     });
 
     it("查询Score中的最高分的学生学号和课程号", () => {
