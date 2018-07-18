@@ -134,7 +134,24 @@ describe("collection operation", function () {
     });
 
     it("以Cno升序、Degree降序查询Score的所有记录", () => {
-        fail("unimplement");
+        const expected = [
+            { sno: 103, cno: '3-105', degree: 92 },
+            { sno: 107, cno: '3-105', degree: 91 },
+            { sno: 105, cno: '3-105', degree: 88 },
+            { sno: 103, cno: '3-245', degree: 86 },
+            { sno: 101, cno: '6-166', degree: 85 },
+            { sno: 108, cno: '6-166', degree: 81 },
+            { sno: 107, cno: '6-106', degree: 79 },
+            { sno: 108, cno: '3-105', degree: 78 },
+            { sno: 109, cno: '3-105', degree: 76 },
+            { sno: 105, cno: '3-245', degree: 75 },
+            { sno: 109, cno: '3-245', degree: 68 },
+            { sno: 101, cno: '3-105', degree: 64 }];
+
+        const actual = scores.sort((s1, s2) => s1.cno - s2.cno)
+                             .sort((s1, s2) => s2.degree - s1.degree);
+
+        expect(actual).toEqual(expected);
     });
 
     it("查询“95031”班的学生人数", () => {
