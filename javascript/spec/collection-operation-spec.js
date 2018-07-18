@@ -59,12 +59,28 @@ describe("collection operation", function () {
             { sno: 101, cno: '6-166', degree: 85 }];
 
         const actualDegrees = scores.filter(x => x.degree === 85 || x.degree === 86 || x.degree === 88);
-        
+
         expect(actualDegrees).toEqual(expectedDegrees);
     });
 
     it("查询Student中“95031”班或性别为“女”的同学记录", () => {
-        fail("unimplement");
+        const expected = [
+            {
+                sno: 107,
+                sname: '王丽',
+                ssex: '女',
+                sbirthday: '1976-01-23',
+                class: 95033
+            },
+            {
+                sno: 109,
+                sname: '王芳',
+                ssex: '女',
+                sbirthday: '1975-02-10',
+                class: 95031
+            }];
+        const actual = students.filter(x => x.ssex === '女' || x.class === '95031');
+        expect(actual).toEqual(expected);
     });
 
     it("以Class降序查询Student的所有记录", () => {
