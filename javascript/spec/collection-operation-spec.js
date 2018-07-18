@@ -84,7 +84,53 @@ describe("collection operation", function () {
     });
 
     it("以Class降序查询Student的所有记录", () => {
-        fail("unimplement");
+        const expected = [
+            {
+                sno: 108,
+                sname: '曾华',
+                ssex: '男',
+                sbirthday: '1999-09-01',
+                class: 95033
+            },
+            {
+                sno: 107,
+                sname: '王丽',
+                ssex: '女',
+                sbirthday: '1976-01-23',
+                class: 95033
+            },
+            {
+                sno: 101,
+                sname: '李军',
+                ssex: '男',
+                sbirthday: '1976-02-20',
+                class: 95033
+            },
+            {
+                sno: 105,
+                sname: '匡明',
+                ssex: '男',
+                sbirthday: '1975-10-02',
+                class: 95031
+            },
+            {
+                sno: 109,
+                sname: '王芳',
+                ssex: '女',
+                sbirthday: '1975-02-10',
+                class: 95031
+            },
+            {
+                sno: 103,
+                sname: '陆君',
+                ssex: '男',
+                sbirthday: '1974-06-03',
+                class: 95031
+            }];
+
+        const actual = students.sort((s1, s2) => s2.class - s1.class);
+
+        expect(actual).toEqual(expected);
     });
 
     it("以Cno升序、Degree降序查询Score的所有记录", () => {
