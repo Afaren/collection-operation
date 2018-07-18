@@ -157,7 +157,7 @@ describe("collection operation", function () {
     it("查询“95031”班的学生人数", () => {
         const expected = 3;
         const actual = students.filter(x => x.class === 95031)
-                               .length;
+            .length;
 
         expect(actual).toEqual(expected);
     });
@@ -172,7 +172,13 @@ describe("collection operation", function () {
     });
 
     it("查询‘3-105’号课程的平均分", () => {
-        fail("unimplement");
+        const expected = 81.5;
+
+        const scoreOf3105 = scores.filter(x => x.cno === '3-105')
+                                  .map(x => x.degree);
+        const actual = scoreOf3105.reduce((acc, cur) => acc + cur, 0) / scoreOf3105.length;
+
+        expect(actual).toEqual(expected);
     });
 
     it("查询Score中至少有5名学生选修的并以3开头的课程的平均分数", () => {
