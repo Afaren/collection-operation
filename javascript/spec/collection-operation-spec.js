@@ -2,7 +2,7 @@ const { teachers, courses, scores, students } = require("../data");
 
 describe("collection operation", function () {
 
-    it("查询student表中的所有记录的sname、Ssex和class列", () => {
+    it("查询student中的所有记录的sname、Ssex和class列", () => {
         const expected = [
             { sname: '曾华', ssex: '男', class: 95033 },
             { sname: '匡明', ssex: '男', class: 95031 },
@@ -21,31 +21,31 @@ describe("collection operation", function () {
         expect(actual).toEqual(expected);
     });
 
-    it("查询教师所有的单位即不重复的Depart列", () => {
+    it("查询教师所有的单位中不重复的Depart列", () => {
         fail("unimplement");
     });
 
-    it("查询Student表的所有记录", () => {
+    it("查询Student的所有记录", () => {
         fail("unimplement");
     });
 
-    it("查询Score表中成绩在60到80之间的所有记录", () => {
+    it("查询Score中成绩在60到80之间的所有记录", () => {
         fail("unimplement");
     });
 
-    it("查询Score表中成绩为85，86或88的记录", () => {
+    it("查询Score中成绩为85，86或88的记录", () => {
         fail("unimplement");
     });
 
-    it("查询Student表中“95031”班或性别为“女”的同学记录", () => {
+    it("查询Student中“95031”班或性别为“女”的同学记录", () => {
         fail("unimplement");
     });
 
-    it("以Class降序查询Student表的所有记录", () => {
+    it("以Class降序查询Student的所有记录", () => {
         fail("unimplement");
     });
 
-    it("以Cno升序、Degree降序查询Score表的所有记录", () => {
+    it("以Cno升序、Degree降序查询Score的所有记录", () => {
         fail("unimplement");
     });
 
@@ -53,7 +53,7 @@ describe("collection operation", function () {
         fail("unimplement");
     });
 
-    it("查询Score表中的最高分的学生学号和课程号", () => {
+    it("查询Score中的最高分的学生学号和课程号", () => {
         fail("unimplement");
     });
 
@@ -61,7 +61,7 @@ describe("collection operation", function () {
         fail("unimplement");
     });
 
-    it("查询Score表中至少有5名学生选修的并以3开头的课程的平均分数", () => {
+    it("查询Score中至少有5名学生选修的并以3开头的课程的平均分数", () => {
         fail("unimplement");
     });
 
@@ -121,7 +121,7 @@ describe("collection operation", function () {
         fail("unimplement");
     });
 
-    it("查询出“计算机系“教师所教课程的成绩表", () => {
+    it("查询出“计算机系“教师所教课程的成绩", () => {
         fail("unimplement");
     });
 
@@ -145,7 +145,7 @@ describe("collection operation", function () {
         fail("unimplement");
     });
 
-    it("查询成绩比该课程平均成绩低的同学的成绩表", () => {
+    it("查询成绩比该课程平均成绩低的同学的成绩", () => {
         fail("unimplement");
     });
 
@@ -161,19 +161,19 @@ describe("collection operation", function () {
         fail("unimplement");
     });
 
-    it("查询Student表中不姓“王”的同学记录", () => {
+    it("查询Student中不姓“王”的同学记录", () => {
         fail("unimplement");
     });
 
-    it("查询Student表中每个学生的姓名和年龄", () => {
+    it("查询Student中每个学生的姓名和年龄", () => {
         fail("unimplement");
     });
 
-    it("查询Student表中最大和最小的Sbirthday日期值", () => {
+    it("查询Student中最大和最小的Sbirthday日期值", () => {
         fail("unimplement");
     });
 
-    it("以班号和年龄从大到小的顺序查询Student表中的全部记录", () => {
+    it("以班号和年龄从大到小的顺序查询Student中的全部记录", () => {
         fail("unimplement");
     });
 
@@ -193,7 +193,7 @@ describe("collection operation", function () {
         fail("unimplement");
     });
 
-    it("查询所有选修“计算机导论”课程的“男”同学的成绩表", () => {
+    it("查询所有选修“计算机导论”课程的“男”同学的成绩", () => {
         fail("unimplement");
     });
 
