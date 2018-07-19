@@ -258,7 +258,29 @@ describe("collection operation", function () {
     });
 
     it("查询所有学生的Sno、Cname和Degree列", () => {
-        fail("unimplement");
+        const expected = [
+            { sno: 103, cname: '操作系统', degree: 86 },
+            { sno: 105, cname: '操作系统', degree: 75 },
+            { sno: 109, cname: '操作系统', degree: 68 },
+            { sno: 103, cname: '计算机导论', degree: 92 },
+            { sno: 105, cname: '计算机导论', degree: 88 },
+            { sno: 109, cname: '计算机导论', degree: 76 },
+            { sno: 101, cname: '计算机导论', degree: 64 },
+            { sno: 107, cname: '计算机导论', degree: 91 },
+            { sno: 108, cname: '计算机导论', degree: 78 },
+            { sno: 101, cname: '数据电路', degree: 85 },
+            { sno: 107, cname: undefined, degree: 79 },
+            { sno: 108, cname: '数据电路', degree: 81 }];
+
+        const actual = scores.map(s => {
+            const course = courses.find(c => c.cno === s.cno);
+            return {
+                sno: s.sno,
+                cname: course && course.cname,
+                degree: s.degree
+            }
+        });
+        expect(actual).toEqual(expected);
     });
 
     it("查询所有学生的Sname、Cname和Degree列", () => {
