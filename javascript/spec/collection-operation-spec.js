@@ -148,7 +148,7 @@ describe("collection operation", function () {
             { sno: 109, cno: '3-245', degree: 68 },
             { sno: 101, cno: '3-105', degree: 64 }];
 
-        const actual = scores.sort((s1, s2) => s1.cno - s2.cno)
+        const actual = scores.sort((s1, s2) => s1.cno.localeCompare(s2.cno))
                              .sort((s1, s2) => s2.degree - s1.degree);
 
         expect(actual).toEqual(expected);
