@@ -210,7 +210,7 @@ describe("collection operation", function () {
     });
 
     it("查询最低分大于70，最高分小于90的Sno列", () => {
-        const expected = [103, 105, 109, 108, 101, 107 ];
+        const expected = [103, 105, 109, 108, 101, 107];
 
         const actual = scores.filter(x => x.degree > 70 && x.degree < 90)
                              .map(x => x.sno)
