@@ -314,7 +314,13 @@ describe("collection operation", function () {
     });
 
     it("查询“95033”班所选课程的平均分", () => {
-        fail("unimplement");
+        const snoOf95033 = students.filter(s => s.class === 95033)
+                                   .map(s => s.sno);
+        const degreeOf95033 = scores.filter(s => snoOf95033.find(sno => sno === s.sno))
+                             .map(s => s.degree);
+        const actual = degreeOf95033.reduce((acc, cur) => acc + cur, 0) / degreeOf95033.length;
+
+        expect(actual).toEqual(79.66666666666667);
     });
 
     it("现查询所有同学的Sno、Cno和rank列", () => {
