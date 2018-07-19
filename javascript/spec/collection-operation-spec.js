@@ -225,7 +225,36 @@ describe("collection operation", function () {
     });
 
     it("查询所有学生的Sname、Cno和Degree列", () => {
-        fail("unimplement");
+        const expected = [
+            { sname: '曾华', cno: '3-105', degree: 78 },
+            { sname: '曾华', cno: '6-166', degree: 81 },
+            { sname: '匡明', cno: '3-245', degree: 75 },
+            { sname: '匡明', cno: '3-105', degree: 88 },
+            { sname: '王丽', cno: '3-105', degree: 91 },
+            { sname: '王丽', cno: '6-106', degree: 79 },
+            { sname: '李军', cno: '3-105', degree: 64 },
+            { sname: '李军', cno: '6-166', degree: 85 },
+            { sname: '王芳', cno: '3-245', degree: 68 },
+            { sname: '王芳', cno: '3-105', degree: 76 },
+            { sname: '陆君', cno: '3-245', degree: 86 },
+            { sname: '陆君', cno: '3-105', degree: 92 }];
+
+        const actual = students.map(s => ({
+            sname: s.sname,
+            scores: scores.filter(c => {
+                return c.sno === s.sno;
+            })
+        })).map(pair => {
+            return pair.scores.map(score => ({
+                sname: pair.sname,
+                cno: score.cno,
+                degree: score.degree
+            }))
+        }).reduce((acc, cur) => {
+            return acc.concat(cur);
+        }, []);
+
+        expect(actual).toEqual(expected);
     });
 
     it("查询所有学生的Sno、Cname和Degree列", () => {
