@@ -181,8 +181,32 @@ describe("collection operation", function () {
         expect(actual).toEqual(expected);
     });
 
-    it("查询Score中至少有5名学生选修的并以3开头的课程的平均分数", () => {
-        fail("unimplement");
+    fit("查询Score中至少有5名学生选修的并以3开头的课程的平均分数", () => {
+        const expected = [ { cno: '3-105', average: 81.5 } ];
+
+        const groupByCno = (acc, cur) => {
+            const key = cur['cno'];
+            if (!acc[key]) {
+                acc[key] = [];
+            }
+            acc[key].push(cur);
+            return acc;
+        };
+        const entriesOf = (object) => {
+            const result = [];
+            for (let property in object) {
+                result.push({ key: property, value: object[property] })
+            }
+            return result;
+        };
+        const groupScores = scores.filter(x => x.cno.startsWith("3"))
+                                  .reduce(groupByCno, {})
+        const actual = entriesOf(groupScores).filter(entry => entry.value.length >= 5)
+                                             .map(entry => ({
+                                                 cno: entry.key,
+                                                 average: entry.value.reduce((acc, cur) => acc + cur.degree, 0) / entry.value.length
+                                             }));
+        expect(actual).toEqual(expected);
     });
 
     it("查询最低分大于70，最高分小于90的Sno列", () => {
