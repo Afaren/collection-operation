@@ -181,8 +181,8 @@ describe("collection operation", function () {
         expect(actual).toEqual(expected);
     });
 
-    fit("查询Score中至少有5名学生选修的并以3开头的课程的平均分数", () => {
-        const expected = [ { cno: '3-105', average: 81.5 } ];
+    it("查询Score中至少有5名学生选修的并以3开头的课程的平均分数", () => {
+        const expected = [{ cno: '3-105', average: 81.5 }];
 
         const groupByCno = (acc, cur) => {
             const key = cur['cno'];
