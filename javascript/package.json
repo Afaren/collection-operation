@@ -9,6 +9,8 @@
   "author": "Afaren",
   "license": "ISC",
   "devDependencies": {
-    "jasmine": "^3.1.0"
+    "chai": "^4.1.2",
+    "jasmine": "^3.1.0",
+    "deep-equal-in-any-order": "^1.0.10"
   }
 }

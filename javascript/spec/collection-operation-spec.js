@@ -1,3 +1,10 @@
+const deepEqualInAnyOrder = require('deep-equal-in-any-order');
+const chai = require('chai');
+
+chai.use(deepEqualInAnyOrder);
+
+const { expect } = chai;
+
 const { teachers, courses, scores, students } = require("../data");
 
 describe("collection operation", function () {
@@ -18,24 +25,25 @@ describe("collection operation", function () {
                 class: student.class
             }
         ));
-        expect(actual).toEqual(expected);
+        expect(actual).to.deep.equalInAnyOrder(expected);
     });
 
     it("查询教师所有的单位中不重复的Depart列", () => {
 
-        const actualDeparts = teachers.map(x => x.depart)
-                                      .reduce((acc, cur) => {
-                                          const found = acc.find(x => x === cur);
-                                          if (!found) {
-                                              acc.push(cur);
-                                          }
-                                          return acc;
-                                      }, []);
-        expect(actualDeparts).toEqual(['计算机系', '电子工程系']);
+        const expected = ['计算机系', '电子工程系'];
+        const actual = teachers.map(x => x.depart)
+                               .reduce((acc, cur) => {
+                                   const found = acc.find(x => x === cur);
+                                   if (!found) {
+                                       acc.push(cur);
+                                   }
+                                   return acc;
+                               }, []);
+        expect(actual).to.deep.equalInAnyOrder(expected);
     });
 
     it("查询Score中成绩在60到80之间的所有记录", () => {
-        const expectedDegrees = [
+        const expected = [
             { sno: 103, cno: '3-245', degree: 86 },
             { sno: 105, cno: '3-245', degree: 75 },
             { sno: 109, cno: '3-245', degree: 68 },
@@ -48,19 +56,21 @@ describe("collection operation", function () {
             { sno: 101, cno: '6-166', degree: 85 },
             { sno: 107, cno: '6-106', degree: 79 },
             { sno: 108, cno: '6-166', degree: 81 }];
-        const actualDegrees = scores.filter(x => x.degree > 60 || x.degree < 80);
-        expect(actualDegrees).toEqual(expectedDegrees);
+        const actual = scores.filter(x => x.degree > 60 || x.degree < 80);
+        expect(actual).to.deep.equalInAnyOrder(expected);
+
     });
 
     it("查询Score中成绩为85，86或88的记录", () => {
-        const expectedDegrees = [
+        const expected = [
             { sno: 103, cno: '3-245', degree: 86 },
             { sno: 105, cno: '3-105', degree: 88 },
             { sno: 101, cno: '6-166', degree: 85 }];
 
-        const actualDegrees = scores.filter(x => x.degree === 85 || x.degree === 86 || x.degree === 88);
+        const actual = scores.filter(x => x.degree === 85 || x.degree === 86 || x.degree === 88);
 
-        expect(actualDegrees).toEqual(expectedDegrees);
+        expect(actual).to.deep.equalInAnyOrder(expected);
+
     });
 
     it("查询Student中“95031”班或性别为“女”的同学记录", () => {
@@ -80,7 +90,7 @@ describe("collection operation", function () {
                 class: 95031
             }];
         const actual = students.filter(x => x.ssex === '女' || x.class === '95031');
-        expect(actual).toEqual(expected);
+        expect(actual).to.deep.equalInAnyOrder(expected);
     });
 
     it("以Class降序查询Student的所有记录", () => {
@@ -130,7 +140,7 @@ describe("collection operation", function () {
 
         const actual = students.sort((s1, s2) => s2.class - s1.class);
 
-        expect(actual).toEqual(expected);
+        expect(actual).to.deep.equal(expected);
     });
 
     it("以Cno升序、Degree降序查询Score的所有记录", () => {
@@ -151,7 +161,7 @@ describe("collection operation", function () {
         const actual = scores.sort((s1, s2) => s1.cno.localeCompare(s2.cno))
                              .sort((s1, s2) => s2.degree - s1.degree);
 
-        expect(actual).toEqual(expected);
+        expect(actual).to.deep.equal(expected);
     });
 
     it("查询“95031”班的学生人数", () => {
@@ -159,7 +169,7 @@ describe("collection operation", function () {
         const actual = students.filter(x => x.class === 95031)
             .length;
 
-        expect(actual).toEqual(expected);
+        expect(actual).equal(expected);
     });
 
     it("查询Score中的最高分的学生学号和课程号", () => {
@@ -168,7 +178,7 @@ describe("collection operation", function () {
         const max = scores.reduce((max, cur) => cur.degree > max.degree ? cur : max);
         const actual = { sno: max.sno, cno: max.cno };
 
-        expect(actual).toEqual(expected);
+        expect(actual).to.deep.equalInAnyOrder(expected);
     });
 
     it("查询‘3-105’号课程的平均分", () => {
@@ -178,7 +188,7 @@ describe("collection operation", function () {
                                   .map(x => x.degree);
         const actual = scoreOf3105.reduce((acc, cur) => acc + cur, 0) / scoreOf3105.length;
 
-        expect(actual).toEqual(expected);
+        expect(actual).to.equal(expected);
     });
 
     it("查询Score中至少有5名学生选修的并以3开头的课程的平均分数", () => {
@@ -206,7 +216,7 @@ describe("collection operation", function () {
                                                  cno: entry.key,
                                                  average: entry.value.reduce((acc, cur) => acc + cur.degree, 0) / entry.value.length
                                              }));
-        expect(actual).toEqual(expected);
+        expect(actual).to.deep.equalInAnyOrder(expected);
     });
 
     it("查询最低分大于70，最高分小于90的Sno列", () => {
@@ -221,7 +231,7 @@ describe("collection operation", function () {
                                  return acc;
                              }, []);
 
-        expect(actual).toEqual(expected);
+        expect(actual).to.deep.equalInAnyOrder(expected);
     });
 
     it("查询所有学生的Sname、Cno和Degree列", () => {
@@ -254,7 +264,7 @@ describe("collection operation", function () {
             return acc.concat(cur);
         }, []);
 
-        expect(actual).toEqual(expected);
+        expect(actual).to.deep.equalInAnyOrder(expected);
     });
 
     it("查询所有学生的Sno、Cname和Degree列", () => {
@@ -280,7 +290,7 @@ describe("collection operation", function () {
                 degree: s.degree
             }
         });
-        expect(actual).toEqual(expected);
+        expect(actual).to.deep.equalInAnyOrder(expected);
     });
 
     it("查询所有学生的Sname、Cname和Degree列", () => {
@@ -310,17 +320,17 @@ describe("collection operation", function () {
                                    }))
                                }).reduce((acc, cur) => acc.concat(cur), []);
 
-        expect(actual).toEqual(expected);
+        expect(actual).to.deep.equalInAnyOrder(expected);
     });
 
     it("查询“95033”班所选课程的平均分", () => {
         const snoOf95033 = students.filter(s => s.class === 95033)
                                    .map(s => s.sno);
         const degreeOf95033 = scores.filter(s => snoOf95033.find(sno => sno === s.sno))
-                             .map(s => s.degree);
+                                    .map(s => s.degree);
         const actual = degreeOf95033.reduce((acc, cur) => acc + cur, 0) / degreeOf95033.length;
 
-        expect(actual).toEqual(79.66666666666667);
+        expect(actual).equal(79.66666666666667);
     });
 
     it("现查询所有同学的Sno、Cno和rank列", () => {
