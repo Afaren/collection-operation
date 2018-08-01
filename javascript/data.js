@@ -32,9 +32,15 @@ const teachers = [
     { tno: 825, tname: '王萍', tsex: '女', tbirthday: '1972-05-05', prof: '助教', depart: '计算机系' },
     { tno: 831, tname: '刘冰', tsex: '女', tbirthday: '1977-08-14', prof: '助教', depart: '电子工程系' }];
 
+
+const fetchStudents = () => Promise.resolve(students);
+const fetchCourses = () => Promise.resolve(courses);
+const fetchScores = () => Promise.resolve(scores);
+const fetchTeachers = () => Promise.resolve(teachers);
+
 module.exports = {
-    students,
-    courses,
-    scores,
-    teachers
+    fetchStudents,
+    fetchCourses,
+    fetchScores,
+    fetchTeachers,
 }

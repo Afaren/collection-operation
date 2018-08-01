@@ -5,7 +5,8 @@ chai.use(deepEqualInAnyOrder);
 
 const {expect} = chai;
 
-const { teachers, courses, scores, students } = require("../data");
+const { fetchStudents, fetchCourses, fetchScores, fetchTeachers } = require("../data");
+
 
 describe("JS 集合操作练习", () => {
 
@@ -19,13 +20,15 @@ describe("JS 集合操作练习", () => {
             { sname: '陆君', ssex: '男', class: 95031 }
         ];
 
-        const actual = students.map(student => ({
-                sname: student.sname,
-                ssex: student.ssex,
-                class: student.class
-            }
-        ));
-        expect(actual).to.deep.equalInAnyOrder(expected);
+       return fetchStudents().then(students => {
+            const actual = students.map(student => ({
+                    sname: student.sname,
+                    ssex: student.ssex,
+                    class: student.class
+                }
+            ));
+            expect(actual).to.deep.equalInAnyOrder(expected);
+        })
     });
 
     test("查询教师所有的单位中不重复的Depart列", () => {
